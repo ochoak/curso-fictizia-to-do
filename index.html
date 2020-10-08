@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+    <h1>Things Todo</h1>
+    <div id="app">
+        <div id="todoList">
+            <ul v-if="ordenatedTask.length >0 ">
+                <li v-for="task in ordenatedTask" :class=" task.status == 'done' ? 'done': ''">
+                    <div @click="markAsDone(task)" class="checkBox" :class=" task.status == 'done' ? 'done': ''"></div>
+                    <span>{{ task.name }}</span>
+                    <i @click="removeTask(task)"class="fa fa-trash-o"></i>
+                </li>
+            </ul>
+            <ul v-else>
+                <li><p>No tasks yet</p></li>
+            </ul>
+            <div id="newTask">
+                <input v-model="newTaskValue" type="text" placeholder="New task" @keyup.enter="addNewtask">
+                <button v-if="newTaskValue" @click="addNewtask"><span>+</span></button>
+            </div>
+        </div>
+    </div>
+    <script src="//unpkg.com/vue"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
